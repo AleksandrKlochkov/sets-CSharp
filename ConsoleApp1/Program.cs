@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,12 @@ namespace ConsoleApp1
             int number = 0;
 
             bool start = false;
+            //здесь будет храниться количество значений каждого множества 
+            int nA, nB, nC;
+            //множетва
+            List<int> A = new List<int>(); //множество А
+            List<int> B = new List<int>(); //множество B
+            List<int> C = new List<int>(); //множество C
 
 
 
@@ -32,10 +39,6 @@ namespace ConsoleApp1
                     case 1:
                         Console.WriteLine("Вы выбрали Интерактивный вариант реализации\r\n");
 
-                        int nA,nB,nC;
-                        int[] A;
-                        int[] B;
-                        int[] C;
                         int currint;
 
                         do
@@ -47,18 +50,27 @@ namespace ConsoleApp1
                         } while (!int.TryParse(Console.ReadLine(), out currint));
 
                         nA = currint;
-                        A = new int[nA];
+                      //  A = new int[nA];
+                      
 
                         for (int i = 0; i < nA; i++)
                         {
 
                             Console.Write("Введите элемент {0}: ", i + 1);
 
+                            //if (int.TryParse(Console.ReadLine(), out currint))
+                            //{
+                            //    A[i] = currint;
+                            //}
+                            //else --i;
+
                             if (int.TryParse(Console.ReadLine(), out currint))
                             {
-                                A[i] = currint;
+                                A.Add(currint);
                             }
                             else --i;
+
+
                         }
 
                         do
@@ -70,16 +82,22 @@ namespace ConsoleApp1
                         } while (!int.TryParse(Console.ReadLine(), out currint));
 
                         nB = currint;
-                        B = new int[nA];
+                       // B = new int[nA];
 
                         for (int j = 0; j < nA; j++)
                         {
 
                             Console.Write("Введите элемент {0}: ", j + 1);
 
+                            //if (int.TryParse(Console.ReadLine(), out currint))
+                            //{
+                            //    B[j] = currint;
+                            //}
+                            //else --j;
+
                             if (int.TryParse(Console.ReadLine(), out currint))
                             {
-                                B[j] = currint;
+                                B.Add(currint);
                             }
                             else --j;
                         }
@@ -93,23 +111,29 @@ namespace ConsoleApp1
                         } while (!int.TryParse(Console.ReadLine(), out currint));
 
                         nC = currint;
-                        C = new int[nC];
+                      //  C = new int[nC];
 
                         for (int k = 0; k < nC; k++)
                         {
 
                             Console.Write("Введите элемент {0}: ", k + 1);
 
+                            //if (int.TryParse(Console.ReadLine(), out currint))
+                            //{
+                            //    C[k] = currint;
+                            //}
+                            //else --k;
+
                             if (int.TryParse(Console.ReadLine(), out currint))
                             {
-                                C[k] = currint;
+                                C.Add(currint);
                             }
                             else --k;
                         }
 
-                        var easyset1 = new LotsOf<int>(A);
-                        var easyset2 = new LotsOf<int>(B);
-                        var easyset3 = new LotsOf<int>(C);
+                        var easyset1 = new LotsOf<int>(A.ToArray());
+                        var easyset2 = new LotsOf<int>(B.ToArray());
+                        var easyset3 = new LotsOf<int>(C.ToArray());
 
                         //var easyset1 = new LotsOf<int>(new int[] {1,2,3,4,5});
                         //var easyset2 = new LotsOf<int>(new int[] {4,5,6,7,8 });
@@ -168,6 +192,118 @@ namespace ConsoleApp1
                         break;
                     case 2:
                         Console.WriteLine("Вы выбрали Полуинтерактивный вариант реализации");
+
+                        string path = @"input.txt";
+
+
+                        try
+                        {
+                            using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
+                            {
+                                var number_line = 0;
+                                string line;
+                                while ((line = sr.ReadLine()) != null)
+                                {
+
+                                    number_line++;
+                                    //Console.WriteLine(line);
+
+                                    int[] ArrLine = new int[line.Length];
+                                 
+                                    for (var i = 0; i < line.Length; i++)
+                                    {
+             
+                                        ArrLine[i] = Convert.ToInt32(line.Substring(i,1));
+                                      
+                                    }
+
+
+
+                                    switch (number_line)
+                                    {
+                                        case 1:
+                                            A = ArrLine.ToList();
+                                            break;
+                                        case 2:
+                                            B = ArrLine.ToList();
+                                            break;
+                                        case 3:
+                                            C = ArrLine.ToList();
+                                            break;
+                                        default:
+                                            Console.Write("Привышенно количество множеств строк в файле");
+                                            break;
+                                    }
+                                }
+
+                            }
+
+
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+
+
+
+                        easyset1 = new LotsOf<int>(A.ToArray());
+                        easyset2 = new LotsOf<int>(B.ToArray());
+                        easyset3 = new LotsOf<int>(C.ToArray());
+
+                        //var easyset1 = new LotsOf<int>(new int[] {1,2,3,4,5});
+                        //var easyset2 = new LotsOf<int>(new int[] {4,5,6,7,8 });
+                        //var easyset3 = new LotsOf<int>(new int[] {3,4,5});
+
+                        Console.Write("Union - операция объединения: ");
+                        foreach (var item in easyset1.Union(easyset2))
+                        {
+                            Console.Write(item + " ");
+                        }
+                        Console.WriteLine("\r\n");
+
+                        Console.Write("Intersection - операция пересечения: ");
+                        foreach (var item in easyset1.Intersection(easyset2))
+                        {
+                            Console.Write(item + " ");
+                        }
+                        Console.WriteLine("\r\n");
+
+                        Console.Write("Difference - операция разности A \\ B: ");
+                        foreach (var item in easyset1.Difference(easyset2))
+                        {
+                            Console.Write(item + " ");
+                        }
+                        Console.WriteLine("\r\n");
+
+                        Console.Write("Difference - операция разности B \\ A: ");
+                        foreach (var item in easyset2.Difference(easyset1))
+                        {
+                            Console.Write(item + " ");
+                        }
+                        Console.WriteLine("\r\n");
+
+                        Console.Write("Subset - операция определения подмножества A Subset C: ");
+                        Console.Write(easyset1.Subset(easyset3));
+                        Console.WriteLine("\r\n");
+
+                        Console.Write("Subset - операция определения подмножества C Subset A: ");
+                        Console.Write(easyset3.Subset(easyset1));
+                        Console.WriteLine("\r\n");
+
+                        Console.Write("Subset - операция определения подмножества C Subset B: ");
+                        Console.Write(easyset3.Subset(easyset2));
+                        Console.WriteLine("\r\n");
+
+                        Console.Write("SummetricDifference - операция семметричной разности: ");
+                        foreach (var item in easyset1.SummetricDifference(easyset2))
+                        {
+                            Console.Write(item + " ");
+                        }
+                        Console.WriteLine("\r\n");
+
+
                         break;
                     case 3:
                         Console.WriteLine("Вы выбрали Неинтерактивный вариант реализации");
