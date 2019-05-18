@@ -22,8 +22,6 @@ namespace ConsoleApp1
             List<int> B = new List<int>(); //множество B
             List<int> C = new List<int>(); //множество C
 
-
-
             do
             {
                 Console.WriteLine("Реализация Абстрактных типов данных и операций над ними. Множества \r\n");
@@ -50,19 +48,11 @@ namespace ConsoleApp1
                         } while (!int.TryParse(Console.ReadLine(), out currint));
 
                         nA = currint;
-                      //  A = new int[nA];
-                      
 
                         for (int i = 0; i < nA; i++)
                         {
 
                             Console.Write("Введите элемент {0}: ", i + 1);
-
-                            //if (int.TryParse(Console.ReadLine(), out currint))
-                            //{
-                            //    A[i] = currint;
-                            //}
-                            //else --i;
 
                             if (int.TryParse(Console.ReadLine(), out currint))
                             {
@@ -82,18 +72,11 @@ namespace ConsoleApp1
                         } while (!int.TryParse(Console.ReadLine(), out currint));
 
                         nB = currint;
-                       // B = new int[nA];
 
                         for (int j = 0; j < nA; j++)
                         {
 
                             Console.Write("Введите элемент {0}: ", j + 1);
-
-                            //if (int.TryParse(Console.ReadLine(), out currint))
-                            //{
-                            //    B[j] = currint;
-                            //}
-                            //else --j;
 
                             if (int.TryParse(Console.ReadLine(), out currint))
                             {
@@ -111,18 +94,10 @@ namespace ConsoleApp1
                         } while (!int.TryParse(Console.ReadLine(), out currint));
 
                         nC = currint;
-                      //  C = new int[nC];
-
                         for (int k = 0; k < nC; k++)
                         {
 
                             Console.Write("Введите элемент {0}: ", k + 1);
-
-                            //if (int.TryParse(Console.ReadLine(), out currint))
-                            //{
-                            //    C[k] = currint;
-                            //}
-                            //else --k;
 
                             if (int.TryParse(Console.ReadLine(), out currint))
                             {
@@ -131,64 +106,9 @@ namespace ConsoleApp1
                             else --k;
                         }
 
-                        var easyset1 = new LotsOf<int>(A.ToArray());
-                        var easyset2 = new LotsOf<int>(B.ToArray());
-                        var easyset3 = new LotsOf<int>(C.ToArray());
-
-                        //var easyset1 = new LotsOf<int>(new int[] {1,2,3,4,5});
-                        //var easyset2 = new LotsOf<int>(new int[] {4,5,6,7,8 });
-                        //var easyset3 = new LotsOf<int>(new int[] {3,4,5});
-
-                        Console.Write("Union - операция объединения: ");
-                        foreach (var item in easyset1.Union(easyset2))
-                        {
-                            Console.Write(item + " ");
-                        }
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Intersection - операция пересечения: ");
-                        foreach (var item in easyset1.Intersection(easyset2))
-                        {
-                            Console.Write(item + " ");
-                        }
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Difference - операция разности A \\ B: ");
-                        foreach (var item in easyset1.Difference(easyset2))
-                        {
-                            Console.Write(item + " ");
-                        }
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Difference - операция разности B \\ A: ");
-                        foreach (var item in easyset2.Difference(easyset1))
-                        {
-                            Console.Write(item + " ");
-                        }
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Subset - операция определения подмножества A Subset C: ");
-                        Console.Write(easyset1.Subset(easyset3));
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Subset - операция определения подмножества C Subset A: ");
-                        Console.Write(easyset3.Subset(easyset1));
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Subset - операция определения подмножества C Subset B: ");
-                        Console.Write(easyset3.Subset(easyset2));
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("SummetricDifference - операция семметричной разности: ");
-                        foreach (var item in easyset1.SummetricDifference(easyset2))
-                        {
-                            Console.Write(item + " ");
-                        }
-                        Console.WriteLine("\r\n");
+                        SetsResult(A, B, C);
 
 
-
-                  
                         break;
                     case 2:
                         Console.WriteLine("Вы выбрали Полуинтерактивный вариант реализации");
@@ -206,8 +126,6 @@ namespace ConsoleApp1
                                 {
 
                                     number_line++;
-                                    //Console.WriteLine(line);
-
                                     int[] ArrLine = new int[line.Length];
                                  
                                     for (var i = 0; i < line.Length; i++)
@@ -216,8 +134,6 @@ namespace ConsoleApp1
                                         ArrLine[i] = Convert.ToInt32(line.Substring(i,1));
                                       
                                     }
-
-
 
                                     switch (number_line)
                                     {
@@ -245,64 +161,7 @@ namespace ConsoleApp1
                             Console.WriteLine(e.Message);
                         }
 
-
-
-
-                        easyset1 = new LotsOf<int>(A.ToArray());
-                        easyset2 = new LotsOf<int>(B.ToArray());
-                        easyset3 = new LotsOf<int>(C.ToArray());
-
-                        //var easyset1 = new LotsOf<int>(new int[] {1,2,3,4,5});
-                        //var easyset2 = new LotsOf<int>(new int[] {4,5,6,7,8 });
-                        //var easyset3 = new LotsOf<int>(new int[] {3,4,5});
-
-                        Console.Write("Union - операция объединения: ");
-                        foreach (var item in easyset1.Union(easyset2))
-                        {
-                            Console.Write(item + " ");
-                        }
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Intersection - операция пересечения: ");
-                        foreach (var item in easyset1.Intersection(easyset2))
-                        {
-                            Console.Write(item + " ");
-                        }
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Difference - операция разности A \\ B: ");
-                        foreach (var item in easyset1.Difference(easyset2))
-                        {
-                            Console.Write(item + " ");
-                        }
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Difference - операция разности B \\ A: ");
-                        foreach (var item in easyset2.Difference(easyset1))
-                        {
-                            Console.Write(item + " ");
-                        }
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Subset - операция определения подмножества A Subset C: ");
-                        Console.Write(easyset1.Subset(easyset3));
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Subset - операция определения подмножества C Subset A: ");
-                        Console.Write(easyset3.Subset(easyset1));
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("Subset - операция определения подмножества C Subset B: ");
-                        Console.Write(easyset3.Subset(easyset2));
-                        Console.WriteLine("\r\n");
-
-                        Console.Write("SummetricDifference - операция семметричной разности: ");
-                        foreach (var item in easyset1.SummetricDifference(easyset2))
-                        {
-                            Console.Write(item + " ");
-                        }
-                        Console.WriteLine("\r\n");
-
+                        SetsResult(A,B,C);
 
                         break;
                     case 3:
@@ -323,5 +182,68 @@ namespace ConsoleApp1
                 Console.ReadKey();
            
         }
+
+
+        static void SetsResult(List<int> A, List<int> B, List<int> C)
+        {
+            var easyset1 = new LotsOf<int>(A.ToArray());
+            var easyset2 = new LotsOf<int>(B.ToArray());
+            var easyset3 = new LotsOf<int>(C.ToArray());
+
+            //var easyset1 = new LotsOf<int>(new int[] {1,2,3,4,5});
+            //var easyset2 = new LotsOf<int>(new int[] {4,5,6,7,8 });
+            //var easyset3 = new LotsOf<int>(new int[] {3,4,5});
+
+            Console.Write("Union - операция объединения: ");
+            foreach (var item in easyset1.Union(easyset2))
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine("\r\n");
+
+            Console.Write("Intersection - операция пересечения: ");
+            foreach (var item in easyset1.Intersection(easyset2))
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine("\r\n");
+
+            Console.Write("Difference - операция разности A \\ B: ");
+            foreach (var item in easyset1.Difference(easyset2))
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine("\r\n");
+
+            Console.Write("Difference - операция разности B \\ A: ");
+            foreach (var item in easyset2.Difference(easyset1))
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine("\r\n");
+
+            Console.Write("Subset - операция определения подмножества A Subset C: ");
+            Console.Write(easyset1.Subset(easyset3));
+            Console.WriteLine("\r\n");
+
+            Console.Write("Subset - операция определения подмножества C Subset A: ");
+            Console.Write(easyset3.Subset(easyset1));
+            Console.WriteLine("\r\n");
+
+            Console.Write("Subset - операция определения подмножества C Subset B: ");
+            Console.Write(easyset3.Subset(easyset2));
+            Console.WriteLine("\r\n");
+
+            Console.Write("SummetricDifference - операция семметричной разности: ");
+            foreach (var item in easyset1.SummetricDifference(easyset2))
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine("\r\n");
+
+        }
+
+
+
     }
-}
+ }
