@@ -111,7 +111,7 @@ namespace ConsoleApp1
 
                         break;
                     case 2:
-                        Console.WriteLine("Вы выбрали Полуинтерактивный вариант реализации");
+                        Console.WriteLine("Вы выбрали Полуинтерактивный вариант реализации? данные были получены из файла input.txt");
 
                         string path = @"input.txt";
 
@@ -165,7 +165,9 @@ namespace ConsoleApp1
 
                         break;
                     case 3:
-                        Console.WriteLine("Вы выбрали Неинтерактивный вариант реализации");
+                        Console.WriteLine("Вы выбрали Неинтерактивный вариант реализации данные были взяты из data.txt и записанны в output.txt");
+
+                        SetsFileWriteResult(A, B, C);
                         break;
                     case 4:
                         Environment.Exit(0);
@@ -189,10 +191,6 @@ namespace ConsoleApp1
             var easyset1 = new LotsOf<int>(A.ToArray());
             var easyset2 = new LotsOf<int>(B.ToArray());
             var easyset3 = new LotsOf<int>(C.ToArray());
-
-            //var easyset1 = new LotsOf<int>(new int[] {1,2,3,4,5});
-            //var easyset2 = new LotsOf<int>(new int[] {4,5,6,7,8 });
-            //var easyset3 = new LotsOf<int>(new int[] {3,4,5});
 
             Console.Write("Union - операция объединения: ");
             foreach (var item in easyset1.Union(easyset2))
@@ -240,6 +238,125 @@ namespace ConsoleApp1
                 Console.Write(item + " ");
             }
             Console.WriteLine("\r\n");
+
+        }
+
+        static void SetsFileWriteResult(List<int> A, List<int> B, List<int> C)
+        {
+
+            string path = @"data.txt";
+            string writePath = @"output.txt";
+
+            try
+            {
+                using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
+                {
+                    var number_line = 0;
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+
+                        number_line++;
+                        int[] ArrLine = new int[line.Length];
+
+                        for (var i = 0; i < line.Length; i++)
+                        {
+
+                            ArrLine[i] = Convert.ToInt32(line.Substring(i, 1));
+
+                        }
+
+                        switch (number_line)
+                        {
+                            case 1:
+                                A = ArrLine.ToList();
+                                break;
+                            case 2:
+                                B = ArrLine.ToList();
+                                break;
+                            case 3:
+                                C = ArrLine.ToList();
+                                break;
+                            default:
+                                Console.Write("Привышенно количество множеств строк в файле");
+                                break;
+                        }
+                    }
+
+                }
+
+              
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            var easyset1 = new LotsOf<int>(A.ToArray());
+            var easyset2 = new LotsOf<int>(B.ToArray());
+            var easyset3 = new LotsOf<int>(C.ToArray());
+
+
+            try {
+                using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
+                {
+
+                    sw.Write("Union - операция объединения: ");
+                foreach (var item in easyset1.Union(easyset2))
+                {
+                        sw.Write(item + " ");
+                }
+                    sw.WriteLine("\r\n");
+
+                    sw.Write("Intersection - операция пересечения: ");
+                foreach (var item in easyset1.Intersection(easyset2))
+                {
+                        sw.Write(item + " ");
+                }
+                    sw.WriteLine("\r\n");
+
+                    sw.Write("Difference - операция разности A \\ B: ");
+                foreach (var item in easyset1.Difference(easyset2))
+                {
+                        sw.Write(item + " ");
+                }
+                    sw.WriteLine("\r\n");
+
+                    sw.Write("Difference - операция разности B \\ A: ");
+                foreach (var item in easyset2.Difference(easyset1))
+                {
+                        sw.Write(item + " ");
+                }
+                    sw.WriteLine("\r\n");
+
+                    sw.Write("Subset - операция определения подмножества A Subset C: ");
+                    sw.Write(easyset1.Subset(easyset3));
+                    sw.WriteLine("\r\n");
+
+                    sw.Write("Subset - операция определения подмножества C Subset A: ");
+                    sw.Write(easyset3.Subset(easyset1));
+                    sw.WriteLine("\r\n");
+
+                    sw.Write("Subset - операция определения подмножества C Subset B: ");
+                    sw.Write(easyset3.Subset(easyset2));
+                    sw.WriteLine("\r\n");
+
+                    sw.Write("SummetricDifference - операция семметричной разности: ");
+                foreach (var item in easyset1.SummetricDifference(easyset2))
+                {
+                        sw.Write(item + " ");
+                }
+                    sw.WriteLine("\r\n");
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+          
 
         }
 
