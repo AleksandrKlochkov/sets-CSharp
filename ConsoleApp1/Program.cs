@@ -111,7 +111,7 @@ namespace ConsoleApp1
 
                         break;
                     case 2:
-                        Console.WriteLine("Вы выбрали Полуинтерактивный вариант реализации? данные были получены из файла input.txt");
+                        Console.WriteLine("Вы выбрали Полуинтерактивный вариант реализации, данные были получены из файла input.txt результат выведен в консоль");
 
                         string path = @"input.txt";
 
@@ -188,9 +188,9 @@ namespace ConsoleApp1
 
         static void SetsResult(List<int> A, List<int> B, List<int> C)
         {
-            var easyset1 = new LotsOf<int>(A.ToArray());
-            var easyset2 = new LotsOf<int>(B.ToArray());
-            var easyset3 = new LotsOf<int>(C.ToArray());
+            var easyset1 = new Set<int>(A.ToArray());
+            var easyset2 = new Set<int>(B.ToArray());
+            var easyset3 = new Set<int>(C.ToArray());
 
             Console.Write("Union - операция объединения: ");
             foreach (var item in easyset1.Union(easyset2))
@@ -294,9 +294,9 @@ namespace ConsoleApp1
                 Console.WriteLine(e.Message);
             }
 
-            var easyset1 = new LotsOf<int>(A.ToArray());
-            var easyset2 = new LotsOf<int>(B.ToArray());
-            var easyset3 = new LotsOf<int>(C.ToArray());
+            var easyset1 = new Set<int>(A.ToArray());
+            var easyset2 = new Set<int>(B.ToArray());
+            var easyset3 = new Set<int>(C.ToArray());
 
 
             try {

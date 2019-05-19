@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class LotsOf<T> : IEnumerable
+    class Set<T> : IEnumerable
     {
-        public string mess = "LotsOf";
+
         private List<T> items = new List<T>();
 
         public int Count => items.Count;
 
-        public LotsOf() { }
+        public Set() { }
 
-        public LotsOf(T item)
+        public Set(T item)
         {
             items.Add(item);
 
         }
 
-        public LotsOf(IEnumerable<T> items)
+        public Set(IEnumerable<T> items)
         {
             this.items = items.ToList();
         }
@@ -42,11 +42,11 @@ namespace ConsoleApp1
             items.Remove(item);
         }
 
-        public LotsOf<T> Union(LotsOf<T> set)//объединение
+        public Set<T> Union(Set<T> set)//объединение
         {
-            // return new LotsOf<T>(items.Union(set.items));
+            // return new Set<T>(items.Union(set.items));
 
-            LotsOf<T> result = new LotsOf<T>();
+            Set<T> result = new Set<T>();
 
 
             foreach (var item in items)
@@ -62,13 +62,13 @@ namespace ConsoleApp1
             return result;
         }
 
-        public LotsOf<T> Intersection(LotsOf<T> set)//пересечение
+        public Set<T> Intersection(Set<T> set)//пересечение
         {
 
-            //return new LotsOf<T>(items.Intersect(set.items));
-            var result = new LotsOf<T>();
-            LotsOf<T> big;
-            LotsOf<T> small;
+            //return new Set<T>(items.Intersect(set.items));
+            var result = new Set<T>();
+            Set<T> big;
+            Set<T> small;
             if (Count >= set.Count)
             {
                 big = this;
@@ -93,10 +93,10 @@ namespace ConsoleApp1
             return result;
         }
 
-        public LotsOf<T> Difference(LotsOf<T> set)//разность
+        public Set<T> Difference(Set<T> set)//разность
         {
-            // return new LotsOf<T>(items.Except(set.items));
-            var result = new LotsOf<T>(items);
+            // return new Set<T>(items.Except(set.items));
+            var result = new Set<T>(items);
 
             foreach (var item in set.items)
             {
@@ -106,7 +106,7 @@ namespace ConsoleApp1
             return result;
         }
 
-        public bool Subset(LotsOf<T> set)//подмножество
+        public bool Subset(Set<T> set)//подмножество
         {
             // return items.All(i => set.items.Contains(i));
 
@@ -130,11 +130,11 @@ namespace ConsoleApp1
             return true;
         }
 
-        public LotsOf<T> SummetricDifference(LotsOf<T> set)//семмитричная разность
+        public Set<T> SummetricDifference(Set<T> set)//семмитричная разность
         {
-            // return new LotsOf<T>(items.Except(set.items).Union(set.items.Except(items)));
+            // return new Set<T>(items.Except(set.items).Union(set.items.Except(items)));
 
-            var result = new LotsOf<T>();
+            var result = new Set<T>();
 
             foreach (var item1 in items)
             {

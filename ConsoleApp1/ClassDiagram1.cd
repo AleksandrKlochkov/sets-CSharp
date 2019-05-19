@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ConsoleApp1.Program">
+    <Position X="6" Y="0.5" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABEAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleApp1.Set&lt;T&gt;">
+    <Position X="6" Y="2.5" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAABAAAAgABARAQAAAAAAAAAAEAQAAAIA=</HashCode>
+      <FileName>Set.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
